@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IVKY</title>
+  <script>
+    (function(){
+      var match=location.pathname.match(/\/c\/([^/?#]+)/i);
+      var base=location.hostname.endsWith('github.io')?'/ivky-site/':'/';
+      if(match){
+        location.replace(base+'?client='+encodeURIComponent(decodeURIComponent(match[1])));
+      }else{
+        location.replace(base);
+      }
+    })();
+  </script>
+</head>
+<body style="margin:0;background:#07100c;color:white;font-family:-apple-system,BlinkMacSystemFont,sans-serif;display:grid;place-items:center;min-height:100vh">
+  <div>IVKY</div>
+</body>
+</html>
