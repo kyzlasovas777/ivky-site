@@ -1,24 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="lt">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#07110c">
-  <meta name="apple-itunes-app" content="app-id=6804832584">
-  <meta name="description" content="IVKY Client lets clients connect with their specialist, see available times and send booking requests. IVKY Booking gives specialists a simple digital appointment book.">
-  <title>IVKY</title>
+  <meta name="description" content="IVKY Booking specialistams ir IVKY Client klientams. Paprastesnis rezervacijų valdymas abiem pusėms.">
+  <title>IVKY — Booking & Client</title>
   <style>
     :root{
       color-scheme:dark;
       --bg:#07110c;
-      --card:#0d1b14;
-      --card2:#101f18;
+      --card:#0c1912;
+      --card2:#102118;
       --line:rgba(255,255,255,.09);
-      --text:#f7fbf8;
-      --muted:#aab8af;
-      --green:#3ed987;
-      --green-soft:#9af0bf;
-      --pink:#f69ab9;
+      --text:#f6faf7;
+      --muted:#9eaea4;
+      --green:#42d98a;
+      --green-soft:#a4efc4;
+      --pink:#ea91ae;
+      --shadow:0 22px 70px rgba(0,0,0,.30);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -27,64 +27,101 @@
       min-height:100vh;
       font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at 50% -10%,rgba(62,217,135,.15),transparent 30rem),
-        var(--bg);
+        radial-gradient(circle at 50% -10%,rgba(66,217,138,.14),transparent 32rem),
+        linear-gradient(180deg,#07110c 0%,#07100c 60%,#050a07 100%);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
     }
     a{color:inherit}
-    .wrap{width:min(760px,calc(100% - 28px));margin:0 auto}
-    nav{height:72px;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-size:23px;font-weight:900;letter-spacing:-.04em}
-    .brand span{color:var(--green);font-size:14px;vertical-align:top;margin-left:3px}
-    .lang{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer}
+    .wrap{width:min(900px,calc(100% - 30px));margin:0 auto}
+    nav{height:74px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-size:24px;font-weight:950;letter-spacing:-.05em}
+    .brand span{color:var(--green);font-size:13px;vertical-align:top;margin-left:4px}
+    .lang{
+      border:1px solid var(--line);background:rgba(255,255,255,.045);color:var(--text);
+      border-radius:999px;padding:8px 12px;font-size:13px;font-weight:850;cursor:pointer;
+    }
 
-    .hero{text-align:center;padding:42px 0 30px}
-    .icon-shell{width:112px;height:112px;margin:0 auto 24px;border-radius:27px;overflow:hidden;background:#12261a;border:1px solid var(--line);box-shadow:0 18px 55px rgba(0,0,0,.35)}
-    .icon-shell img{width:100%;height:100%;display:block;object-fit:cover}
-    .icon-fallback{width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(145deg,#45e68d,#1fb66b);color:#07120b;font-size:24px;font-weight:950}
-    .eyebrow{font-size:13px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--green-soft);margin-bottom:12px}
-    h1{font-size:clamp(42px,10vw,72px);line-height:.98;letter-spacing:-.06em;margin:0 auto 18px;max-width:700px}
-    .lead{max-width:620px;margin:0 auto;color:var(--muted);font-size:clamp(18px,4vw,21px);line-height:1.5}
+    .hero{text-align:center;padding:55px 0 28px}
+    .eyebrow{color:var(--green-soft);font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:14px}
+    h1{font-size:clamp(44px,9vw,78px);line-height:.98;letter-spacing:-.065em;margin:0 auto 18px;max-width:780px}
+    .hero p{max-width:650px;margin:0 auto;color:var(--muted);font-size:clamp(18px,3vw,21px);line-height:1.52}
+    .hero-note{margin-top:18px;color:#71847a;font-size:13px}
 
-    .personal{display:none;margin:24px auto 0;max-width:620px;padding:16px 18px;border-radius:18px;border:1px solid rgba(62,217,135,.25);background:rgba(62,217,135,.08);text-align:left}
-    .personal strong{display:block;margin-bottom:5px;color:#eafff2}
-    .personal span{color:#c6dfd0;line-height:1.45;font-size:14px}
+    .personal{
+      display:none;margin:18px auto 36px;max-width:760px;padding:18px;border-radius:20px;
+      border:1px solid rgba(66,217,138,.28);background:rgba(66,217,138,.075);
+    }
     body.client-link .personal{display:block}
+    .personal-row{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .personal-copy{min-width:0}
+    .personal-copy strong{display:block;font-size:17px;margin-bottom:4px}
+    .personal-copy span{display:block;color:#bdd8c8;font-size:14px;line-height:1.4}
+    .open-link{flex:0 0 auto;text-decoration:none;background:var(--green);color:#06120b;padding:12px 16px;border-radius:14px;font-size:14px;font-weight:900}
 
-    .cta{display:grid;gap:11px;margin:28px auto 0;max-width:620px}
-    .button{min-height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-weight:850;font-size:16px;border:1px solid transparent;padding:0 18px}
-    .primary{background:var(--green);color:#06120b;box-shadow:0 14px 32px rgba(62,217,135,.17)}
-    .secondary{background:rgba(255,255,255,.045);border-color:var(--line);color:#e9efeb}
+    .apps{display:grid;gap:20px;padding:24px 0 22px}
+    .app-card{
+      display:grid;grid-template-columns:130px 1fr;gap:28px;align-items:start;
+      border:1px solid var(--line);border-radius:28px;padding:28px;
+      background:linear-gradient(160deg,var(--card2),var(--card));box-shadow:var(--shadow);
+    }
+    .app-card.client{background:linear-gradient(160deg,#0d2117,#0a1811)}
+    .icon-wrap{width:130px;height:130px;border-radius:29px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.08);box-shadow:0 16px 36px rgba(0,0,0,.30)}
+    .icon-wrap img{width:100%;height:100%;display:block;object-fit:cover}
+    .icon-fallback{width:100%;height:100%;display:grid;place-items:center;font-size:25px;font-weight:950;letter-spacing:-.06em;background:linear-gradient(145deg,#262626,#090909)}
+    .client .icon-fallback{background:linear-gradient(145deg,#46e28c,#17ae64);color:#06120b}
 
-    .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:34px 0 0}
-    .quick-item{padding:18px 12px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.035)}
-    .quick-item b{display:block;font-size:15px;margin-bottom:6px}
-    .quick-item span{display:block;color:var(--muted);font-size:13px;line-height:1.4}
+    .app-content{min-width:0}
+    .for-label{font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:var(--pink);margin-bottom:7px}
+    .client .for-label{color:var(--green-soft)}
+    .app-card h2{font-size:clamp(31px,5vw,44px);letter-spacing:-.05em;line-height:1.02;margin:0 0 10px}
+    .desc{color:var(--muted);font-size:16px;line-height:1.52;margin:0;max-width:610px}
+    .features{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 20px}
+    .feature{font-size:12px;font-weight:750;color:#dce6e0;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06);border-radius:999px;padding:8px 10px}
 
-    .section{padding:54px 0 0}
-    .section-card{border:1px solid var(--line);background:linear-gradient(180deg,var(--card2),var(--card));border-radius:26px;padding:28px}
-    .section-tag{color:var(--pink);font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
-    .section-card h2{font-size:clamp(30px,7vw,44px);letter-spacing:-.045em;line-height:1.06;margin:10px 0 12px}
-    .section-card p{color:var(--muted);font-size:16px;line-height:1.55;margin:0}
-    .mini-list{display:grid;gap:9px;margin:22px 0 0}
-    .mini-row{display:flex;align-items:center;gap:10px;padding:12px 13px;border-radius:14px;background:rgba(255,255,255,.035);color:#dce6e0;font-size:14px}
-    .mini-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex:0 0 auto}
-    .booking-link{margin-top:18px}
+    .store-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .store-badge{
+      display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+      border:1px solid rgba(255,255,255,.13);background:#050505;border-radius:12px;
+      padding:8px 13px 8px 11px;min-height:43px;
+    }
+    .store-badge .apple{font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:25px;line-height:1;transform:translateY(-1px)}
+    .store-badge .store-copy{display:flex;flex-direction:column;line-height:1.02}
+    .store-badge small{font-size:9px;color:#b9b9b9;font-weight:650;letter-spacing:.02em}
+    .store-badge b{font-size:16px;letter-spacing:-.02em}
+    .store-status{font-size:11px;color:#71847a}
 
-    footer{padding:44px 0 28px;color:#7f9187;font-size:13px;text-align:center}
-    footer a{text-decoration:none;color:#9fb0a6}
+    .about{padding:42px 0 12px;text-align:center}
+    .about h3{font-size:clamp(28px,5vw,40px);letter-spacing:-.045em;margin:0 0 10px}
+    .about p{max-width:650px;margin:0 auto;color:var(--muted);line-height:1.5;font-size:15px}
 
-    @media(max-width:600px){
-      .wrap{width:min(100% - 22px,760px)}
+    footer{padding:44px 0 30px;color:#728379;font-size:12px;text-align:center}
+    footer .links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:10px}
+    footer a{text-decoration:none;color:#9eaea4}
+
+    @media(max-width:650px){
+      .wrap{width:min(100% - 22px,900px)}
       nav{height:62px}
-      .hero{padding-top:24px}
-      .icon-shell{width:94px;height:94px;border-radius:23px;margin-bottom:20px}
+      .hero{padding:38px 4px 22px}
       h1{font-size:48px}
-      .quick{grid-template-columns:1fr;gap:8px;margin-top:26px}
-      .quick-item{text-align:left;padding:15px 16px}
-      .section{padding-top:38px}
-      .section-card{padding:22px;border-radius:22px}
+      .personal{margin-bottom:22px}
+      .personal-row{display:block}
+      .open-link{display:flex;justify-content:center;margin-top:14px}
+      .apps{gap:14px;padding-top:16px}
+      .app-card{grid-template-columns:82px 1fr;gap:16px;padding:18px;border-radius:23px}
+      .icon-wrap{width:82px;height:82px;border-radius:20px}
+      .icon-fallback{font-size:18px}
+      .app-card h2{font-size:30px}
+      .desc{grid-column:1 / -1;font-size:15px;margin-top:2px}
+      .features{grid-column:1 / -1;margin:4px 0 6px}
+      .store-row{grid-column:1 / -1}
+      .for-label{font-size:10px}
+    }
+    @media(max-width:390px){
+      h1{font-size:43px}
+      .app-card{grid-template-columns:72px 1fr}
+      .icon-wrap{width:72px;height:72px;border-radius:18px}
+      .app-card h2{font-size:27px}
     }
   </style>
 </head>
@@ -92,101 +129,139 @@
   <div class="wrap">
     <nav>
       <div class="brand">IVKY<span>✦</span></div>
-      <button class="lang" id="langButton" type="button">LT</button>
+      <button class="lang" id="langButton" type="button">EN</button>
     </nav>
 
-    <main>
-      <section class="hero">
-        <div class="icon-shell" aria-label="IVKY Client icon">
-          <div class="icon-fallback" id="iconFallback">IVKY</div>
+    <header class="hero">
+      <div class="eyebrow" data-i18n="heroEyebrow">IVKY APPOINTMENTS</div>
+      <h1 data-i18n="heroTitle">Rezervacijos abiem pusėms.</h1>
+      <p data-i18n="heroLead">IVKY Booking specialistui. IVKY Client klientui. Viena aiški sistema nuo darbo grafiko iki patvirtinto vizito.</p>
+      <div class="hero-note" data-i18n="heroNote">Šiuo metu prieinama iPhone ir iPad.</div>
+    </header>
+
+    <section class="personal" id="personalBox">
+      <div class="personal-row">
+        <div class="personal-copy">
+          <strong data-i18n="personalTitle">Gavai asmeninę specialisto nuorodą.</strong>
+          <span data-i18n="personalText">Atidaryk ją IVKY Client programėlėje ir rezervuok vizitą.</span>
+        </div>
+        <a href="#" class="open-link" id="openPersonal" data-i18n="personalButton">Atidaryti IVKY Client</a>
+      </div>
+    </section>
+
+    <main class="apps">
+      <article class="app-card booking">
+        <div class="icon-wrap">
+          <div class="icon-fallback" id="bookingFallback">IVKY</div>
+          <img id="bookingIcon" alt="IVKY Booking" hidden>
+        </div>
+        <div class="app-content">
+          <div class="for-label" data-i18n="bookingFor">SPECIALISTUI</div>
+          <h2>IVKY Booking</h2>
+          <p class="desc" data-i18n="bookingDesc">Skaitmeninė užrašų knyga specialistui. Tvarkyk rezervacijas, klientus, paslaugas ir darbo laiką vienoje vietoje.</p>
+          <div class="features">
+            <span class="feature" data-i18n="bookingF1">Kalendorius ir rezervacijos</span>
+            <span class="feature" data-i18n="bookingF2">Klientai ir paslaugos</span>
+            <span class="feature" data-i18n="bookingF3">Darbo laikas ir pranešimai</span>
+          </div>
+          <div class="store-row">
+            <a class="store-badge" id="bookingStore" href="https://apps.apple.com/us/search?term=IVKY%20Booking" target="_blank" rel="noopener">
+              <span class="apple"></span>
+              <span class="store-copy"><small data-i18n="availableOn">Prieinama</small><b>App Store</b></span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="app-card client">
+        <div class="icon-wrap">
+          <div class="icon-fallback" id="clientFallback">IVKY</div>
           <img id="clientIcon" alt="IVKY Client" hidden>
         </div>
-
-        <div class="eyebrow">IVKY Client</div>
-        <h1 data-i18n="heroTitle">Book your visit simply.</h1>
-        <p class="lead" data-i18n="heroLead">Connect with your specialist, see real available times and send a booking request in a few taps.</p>
-
-        <div class="personal" id="personalMessage">
-          <strong data-i18n="personalTitle">You opened your specialist’s link.</strong>
-          <span data-i18n="personalText">Open it in IVKY Client and your specialist will be added automatically.</span>
-        </div>
-
-        <div class="cta">
-          <a class="button primary" id="openClientButton" href="#" data-i18n="openClient">Open IVKY Client</a>
-          <a class="button secondary" href="https://apps.apple.com/app/ivky-client/id6804832584" data-i18n="downloadClient">Download from the App Store</a>
-        </div>
-
-        <div class="quick">
-          <div class="quick-item"><b data-i18n="q1t">Your specialist</b><span data-i18n="q1x">Connect once using a personal link or QR code.</span></div>
-          <div class="quick-item"><b data-i18n="q2t">Real availability</b><span data-i18n="q2x">See times based on the specialist’s actual schedule.</span></div>
-          <div class="quick-item"><b data-i18n="q3t">Booking updates</b><span data-i18n="q3x">Send a request and receive status notifications.</span></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-card">
-          <div class="section-tag">IVKY Booking</div>
-          <h2 data-i18n="bookingTitle">The appointment book for specialists.</h2>
-          <p data-i18n="bookingLead">Manage appointments, services and working hours, then give clients their personal IVKY booking link.</p>
-          <div class="mini-list">
-            <div class="mini-row"><span class="mini-dot"></span><span data-i18n="b1">Daily appointment timeline</span></div>
-            <div class="mini-row"><span class="mini-dot"></span><span data-i18n="b2">Services and working hours</span></div>
-            <div class="mini-row"><span class="mini-dot"></span><span data-i18n="b3">Client links, QR codes and confirmations</span></div>
+        <div class="app-content">
+          <div class="for-label" data-i18n="clientFor">KLIENTUI</div>
+          <h2>IVKY Client</h2>
+          <p class="desc" data-i18n="clientDesc">Prisijunk prie savo specialisto, matyk realius laisvus laikus, pasirink paslaugą ir išsiųsk rezervacijos užklausą per kelias sekundes.</p>
+          <div class="features">
+            <span class="feature" data-i18n="clientF1">Asmeninė specialisto nuoroda</span>
+            <span class="feature" data-i18n="clientF2">Realūs laisvi laikai</span>
+            <span class="feature" data-i18n="clientF3">Greita rezervacija</span>
           </div>
-          <div class="booking-link">
-            <a class="button secondary" href="https://apps.apple.com/us/search?term=IVKY%20Booking" data-i18n="bookingStore">Find IVKY Booking on the App Store</a>
+          <div class="store-row">
+            <a class="store-badge" id="clientStore" href="https://apps.apple.com/app/ivky-client/id6804832584" target="_blank" rel="noopener">
+              <span class="apple"></span>
+              <span class="store-copy"><small data-i18n="availableOn">Prieinama</small><b>App Store</b></span>
+            </a>
           </div>
         </div>
-      </section>
+      </article>
     </main>
 
-    <footer>© 2026 IVKY · <a href="mailto:support@ivky.lt">support@ivky.lt</a></footer>
+    <section class="about">
+      <h3 data-i18n="aboutTitle">Paprasta specialistui. Paprasta klientui.</h3>
+      <p data-i18n="aboutText">IVKY Booking ir IVKY Client veikia kartu, kad rezervacijos būtų aiškios, greitos ir nereikalautų bereikalingų žingsnių.</p>
+    </section>
+
+    <footer>
+      <div class="links">
+        <a href="mailto:support@ivky.lt">support@ivky.lt</a>
+        <a href="https://ivky.lt">ivky.lt</a>
+      </div>
+      <div>© 2026 IVKY</div>
+    </footer>
   </div>
 
   <script>
-    const CLIENT_STORE = 'https://apps.apple.com/app/ivky-client/id6804832584';
+    const CLIENT_STORE_FALLBACK = 'https://apps.apple.com/app/ivky-client/id6804832584';
+    const BOOKING_STORE_FALLBACK = 'https://apps.apple.com/us/search?term=IVKY%20Booking';
 
     const translations = {
-      en: {
-        heroTitle:'Book your visit simply.',
-        heroLead:'Connect with your specialist, see real available times and send a booking request in a few taps.',
-        personalTitle:'You opened your specialist’s link.',
-        personalText:'Open it in IVKY Client and your specialist will be added automatically.',
-        openClient:'Open IVKY Client',
-        downloadClient:'Download from the App Store',
-        q1t:'Your specialist', q1x:'Connect once using a personal link or QR code.',
-        q2t:'Real availability', q2x:'See times based on the specialist’s actual schedule.',
-        q3t:'Booking updates', q3x:'Send a request and receive status notifications.',
-        bookingTitle:'The appointment book for specialists.',
-        bookingLead:'Manage appointments, services and working hours, then give clients their personal IVKY booking link.',
-        b1:'Daily appointment timeline', b2:'Services and working hours', b3:'Client links, QR codes and confirmations',
-        bookingStore:'Find IVKY Booking on the App Store'
+      lt:{
+        heroEyebrow:'IVKY REZERVACIJOS',
+        heroTitle:'Rezervacijos abiem pusėms.',
+        heroLead:'IVKY Booking specialistui. IVKY Client klientui. Viena aiški sistema nuo darbo grafiko iki patvirtinto vizito.',
+        heroNote:'Šiuo metu prieinama iPhone ir iPad.',
+        personalTitle:'Gavai asmeninę specialisto nuorodą.',
+        personalText:'Atidaryk ją IVKY Client programėlėje ir rezervuok vizitą.',
+        personalButton:'Atidaryti IVKY Client',
+        bookingFor:'SPECIALISTUI',
+        bookingDesc:'Skaitmeninė užrašų knyga specialistui. Tvarkyk rezervacijas, klientus, paslaugas ir darbo laiką vienoje vietoje.',
+        bookingF1:'Kalendorius ir rezervacijos',bookingF2:'Klientai ir paslaugos',bookingF3:'Darbo laikas ir pranešimai',
+        clientFor:'KLIENTUI',
+        clientDesc:'Prisijunk prie savo specialisto, matyk realius laisvus laikus, pasirink paslaugą ir išsiųsk rezervacijos užklausą per kelias sekundes.',
+        clientF1:'Asmeninė specialisto nuoroda',clientF2:'Realūs laisvi laikai',clientF3:'Greita rezervacija',
+        availableOn:'Prieinama',
+        aboutTitle:'Paprasta specialistui. Paprasta klientui.',
+        aboutText:'IVKY Booking ir IVKY Client veikia kartu, kad rezervacijos būtų aiškios, greitos ir nereikalautų bereikalingų žingsnių.'
       },
-      lt: {
-        heroTitle:'Rezervuok vizitą paprastai.',
-        heroLead:'Prisijunk prie savo specialisto, matyk realiai laisvus laikus ir išsiųsk rezervacijos užklausą keliais paspaudimais.',
-        personalTitle:'Atidarei savo specialisto nuorodą.',
-        personalText:'Atidaryk ją su IVKY Client ir specialistas bus pridėtas automatiškai.',
-        openClient:'Atidaryti IVKY Client',
-        downloadClient:'Atsisiųsti iš App Store',
-        q1t:'Tavo specialistas', q1x:'Prisijunk vieną kartą per asmeninę nuorodą arba QR kodą.',
-        q2t:'Realūs laisvi laikai', q2x:'Matyk laikus pagal tikrą specialisto darbo grafiką.',
-        q3t:'Rezervacijos naujienos', q3x:'Išsiųsk užklausą ir gauk būsenos pranešimus.',
-        bookingTitle:'Užrašų knyga specialistams.',
-        bookingLead:'Valdyk rezervacijas, paslaugas ir darbo laiką, o klientams suteik asmeninę IVKY rezervacijos nuorodą.',
-        b1:'Dienos rezervacijų laiko juosta', b2:'Paslaugos ir darbo laikas', b3:'Klientų nuorodos, QR kodai ir patvirtinimai',
-        bookingStore:'Rasti IVKY Booking App Store'
+      en:{
+        heroEyebrow:'IVKY APPOINTMENTS',
+        heroTitle:'Booking for both sides.',
+        heroLead:'IVKY Booking for specialists. IVKY Client for clients. One clear flow from working hours to a confirmed appointment.',
+        heroNote:'Currently available for iPhone and iPad.',
+        personalTitle:'You received a personal specialist link.',
+        personalText:'Open it in IVKY Client and book your appointment.',
+        personalButton:'Open IVKY Client',
+        bookingFor:'FOR SPECIALISTS',
+        bookingDesc:'A digital appointment book for specialists. Manage bookings, clients, services and working hours in one place.',
+        bookingF1:'Calendar and bookings',bookingF2:'Clients and services',bookingF3:'Working hours and notifications',
+        clientFor:'FOR CLIENTS',
+        clientDesc:'Connect with your specialist, see real availability, choose a service and send a booking request in seconds.',
+        clientF1:'Personal specialist link',clientF2:'Real availability',clientF3:'Fast booking',
+        availableOn:'Available on',
+        aboutTitle:'Simple for specialists. Simple for clients.',
+        aboutText:'IVKY Booking and IVKY Client work together to keep appointments clear, fast and free from unnecessary steps.'
       }
     };
 
     function tokenFromLocation(){
-      const query = new URLSearchParams(location.search).get('client');
-      if(query) return query.trim();
-      const match = location.pathname.match(/^\/c\/([^/?#]+)/i);
-      return match ? decodeURIComponent(match[1]) : '';
+      const q=new URLSearchParams(location.search).get('client');
+      if(q) return q.trim();
+      const match=location.pathname.match(/^\/c\/([^/?#]+)/i);
+      return match?decodeURIComponent(match[1]):'';
     }
 
-    const clientToken = tokenFromLocation();
+    const clientToken=tokenFromLocation();
     if(clientToken){
       document.body.classList.add('client-link');
       if(new URLSearchParams(location.search).has('client')){
@@ -195,40 +270,69 @@
     }
 
     function setLanguage(lang){
-      const selected = translations[lang] ? lang : 'en';
-      document.documentElement.lang = selected;
+      const selected=translations[lang]?lang:'lt';
+      document.documentElement.lang=selected;
       document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const key = el.getAttribute('data-i18n');
-        if(translations[selected][key]) el.textContent = translations[selected][key];
+        const key=el.getAttribute('data-i18n');
+        if(translations[selected][key]) el.textContent=translations[selected][key];
       });
-      document.getElementById('langButton').textContent = selected === 'lt' ? 'EN' : 'LT';
+      document.getElementById('langButton').textContent=selected==='lt'?'EN':'LT';
       localStorage.setItem('ivky-site-lang',selected);
     }
 
-    const savedLanguage = localStorage.getItem('ivky-site-lang');
-    const initialLanguage = savedLanguage || (navigator.language.toLowerCase().startsWith('lt') ? 'lt' : 'en');
+    const savedLanguage=localStorage.getItem('ivky-site-lang');
+    const initialLanguage=savedLanguage||(navigator.language.toLowerCase().startsWith('lt')?'lt':'en');
     setLanguage(initialLanguage);
-    document.getElementById('langButton').addEventListener('click',()=>setLanguage(document.documentElement.lang === 'lt' ? 'en' : 'lt'));
+    document.getElementById('langButton').addEventListener('click',()=>setLanguage(document.documentElement.lang==='lt'?'en':'lt'));
 
-    document.getElementById('openClientButton').addEventListener('click',(event)=>{
+    function openPersonalLink(event){
       event.preventDefault();
-      if(!clientToken){ location.href = CLIENT_STORE; return; }
-      const fallback = setTimeout(()=>{ if(document.visibilityState === 'visible') location.href = CLIENT_STORE; },1400);
-      document.addEventListener('visibilitychange',()=>{ if(document.visibilityState === 'hidden') clearTimeout(fallback); },{once:true});
-      location.href = 'ivky-client://c/' + encodeURIComponent(clientToken);
-    });
-
-    function ivkyClientLookup(payload){
-      try{
-        const item = payload && payload.results && payload.results[0];
-        if(!item || !item.artworkUrl512) return;
-        const img = document.getElementById('clientIcon');
-        img.onload = ()=>{ img.hidden = false; document.getElementById('iconFallback').style.display = 'none'; };
-        img.src = item.artworkUrl512.replace('512x512bb','1024x1024bb');
-      }catch(_){ }
+      if(!clientToken){ location.href=CLIENT_STORE_FALLBACK; return; }
+      let fallback=setTimeout(()=>{
+        if(document.visibilityState==='visible') location.href=CLIENT_STORE_FALLBACK;
+      },1400);
+      const onVisibility=()=>{ if(document.visibilityState==='hidden') clearTimeout(fallback); };
+      document.addEventListener('visibilitychange',onVisibility,{once:true});
+      location.href='ivky-client://c/'+encodeURIComponent(clientToken);
     }
-    window.ivkyClientLookup = ivkyClientLookup;
+    document.getElementById('openPersonal').addEventListener('click',openPersonalLink);
+
+    function applyAppData(kind,data){
+      if(!data) return;
+      const icon=document.getElementById(kind+'Icon');
+      const fallback=document.getElementById(kind+'Fallback');
+      const store=document.getElementById(kind+'Store');
+      if(data.artworkUrl512||data.artworkUrl100){
+        icon.src=data.artworkUrl512||data.artworkUrl100;
+        icon.onload=()=>{ icon.hidden=false; fallback.style.display='none'; };
+      }
+      if(data.trackViewUrl) store.href=data.trackViewUrl;
+    }
+
+    async function appleJSON(url){
+      const response=await fetch(url,{cache:'force-cache'});
+      if(!response.ok) throw new Error('Apple lookup failed');
+      return response.json();
+    }
+
+    async function loadRealAppArtwork(){
+      try{
+        const client=await appleJSON('https://itunes.apple.com/lookup?id=6804832584&country=lt');
+        applyAppData('client',client.results&&client.results[0]);
+      }catch(e){}
+
+      const countries=['lt','ie','us'];
+      for(const country of countries){
+        try{
+          const result=await appleJSON('https://itunes.apple.com/search?term=IVKY%20Booking&entity=software&country='+country+'&limit=25');
+          const apps=result.results||[];
+          const match=apps.find(app=>String(app.trackName||'').trim().toLowerCase()==='ivky booking')
+            ||apps.find(app=>String(app.trackName||'').toLowerCase().includes('ivky')&&String(app.sellerName||'').toLowerCase().includes('ivanas'));
+          if(match){ applyAppData('booking',match); break; }
+        }catch(e){}
+      }
+    }
+    loadRealAppArtwork();
   </script>
-  <script src="https://itunes.apple.com/lookup?id=6804832584&callback=ivkyClientLookup"></script>
 </body>
 </html>
